@@ -3,7 +3,7 @@ import SpaceCapsules from "@/components/SpaceCapsules/SpaceCapsules.vue";
 </script>
 <template>
   <div class="about">
-    <h1>SpaceX</h1>
+    <h1>Launches</h1>
     <SpaceCapsules />
   </div>
 </template>

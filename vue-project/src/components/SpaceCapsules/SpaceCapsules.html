@@ -1,8 +1,17 @@
-<h1>Space Caps Loaded</h1>
-    <div class="caps_wrapper">
-        <div v-if="capsules" v-for="cap in capsules" class="caps_wrapper--element">
-            <h2>{{cap.mission_name}}</h2>
-            <p>{{cap.details}}</p>
-            <img :src="cap.links.mission_patch_small" />
+<div class="caps_wrapper">
+    <div v-if="capsules" v-for="cap in capsules" class="caps_wrapper--element" :class="cap.launch_success==false?'caps_wrapper--element__red':'caps_wrapper--element__green'">
+        <img :src="cap.links.mission_patch_small" class="caps_wrapper--img"/>
+        <div class="caps_wrapper--details">
+            <div id="menu">
+                <h2>{{cap.mission_name}}</h2>
+                <div id="list">
+                    <p>{{cap.details}}</p>
+                </div>
+            </div>
+            <h3>Year : <span> {{cap.launch_year}}</span></h3>
+            <h3>Rocket : <span>{{cap.rocket.rocket_name}}</span></h3>
+            <h3>Site : <span>{{cap.launch_site.site_name}}</span></h3>
+            <h3><a :href="cap.links.article_link">Article </a></h3>
         </div>
     </div>
+</div>

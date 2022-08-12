@@ -1,5 +1,6 @@
 <template src="./SpaceCapsules.html"></template>
-<style scoped src="./SpaceCapsules.css"></style>
+<style scoped src="./SpaceCapsules.scss"></style>
+
 <script>
 export default {
 

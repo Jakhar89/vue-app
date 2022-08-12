@@ -1,11 +1,12 @@
 <div class="caps_wrapper">
-    <div v-if="capsules" v-for="cap in capsules" class="caps_wrapper--element" :class="cap.launch_success==false?'caps_wrapper--element__red':'caps_wrapper--element__green'">
+    <div v-if="capsules" v-for="(cap,i) in capsules" :key="cap.flight_number" class="caps_wrapper--element" :class="cap.launch_success==false?'caps_wrapper--element__red':'caps_wrapper--element__green'">
         <img :src="cap.links.mission_patch_small" class="caps_wrapper--img"/>
         <div class="caps_wrapper--details">
             <div id="menu">
                 <h2>{{cap.mission_name}}</h2>
                 <div id="list">
-                    <p>{{cap.details}}</p>
+                    <p v-if="cap.details">{{cap.details}}</p>
+                    <p v-else="">No further information available!</p>
                 </div>
             </div>
             <h3>Year : <span> {{cap.launch_year}}</span></h3>

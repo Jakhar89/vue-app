@@ -1,0 +1,16 @@
+.caps_wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.caps_wrapper--element{
+    margin: 2%;
+    padding: 2px 5px;
+    width: 45%;
+    border: 1px solid greenyellow;
+
+}
+h2{
+    color:white;
+}

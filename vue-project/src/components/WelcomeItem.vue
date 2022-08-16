@@ -1,10 +1,25 @@
+<script>
+import eventBus from '../eventBus'
+
+export default{
+  data:function(){return ({clickF:null})},
+  mounted:function(){
+    //console.log(App.methods.abo,'adsdasdad',App.$root)
+  },
+  methods:{
+    changeCurrent(){
+      eventBus.$emit('custom-event',event.target.textContent)
+    }
+  }
+}
+</script>
 <template>
   <div class="item">
     <i>
       <slot name="icon"></slot>
     </i>
     <div class="details">
-      <h3>
+      <h3 @click="changeCurrent()">
         <slot name="heading"></slot>
       </h3>
       <slot></slot>
@@ -13,6 +28,11 @@
 </template>
 
 <style scoped>
+h3:hover{
+  cursor: pointer;
+  padding:5px;
+  background: var(--main-text-color);
+}
 .item {
   margin-top: 2rem;
   display: flex;

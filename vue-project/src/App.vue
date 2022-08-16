@@ -1,30 +1,40 @@
 <script>
+import eventBus from './eventBus';
 import { RouterLink, RouterView } from 'vue-router';
-import { shallowRef } from "vue";
+import { shallowRef,ref} from "vue";
 import HelloWorld from './components/HelloWorld.vue';
-import About from '@/views/AboutView.vue'
+import About from './views/AboutView.vue';
+import Dyno from '@/components/partials/DynoTemplate.vue';
 export default{
   data:function(){
     return (
       {
-        currentPage:null
+        currentPage:null,
+        apiText:null
       }
     )
   },
   methods:{
-    abo:function(){
+    abo:function(txt){
+      this.apiText=txt
+      this.currentPage=shallowRef(Dyno);
       document.getElementById('dynamic').style.display='block';
     }
   },
   mounted:function(){
+    //console.log(this.currentPage)
+    eventBus.$on('custom-event',this.abo)
     //this.currentPage=shallowRef(About)
+    
   },
   components: {
             HelloWorld,
             RouterLink,
             RouterView,
+            Dyno,
             About
-        }
+            
+  }
 }
 </script>
 
@@ -36,14 +46,14 @@ export default{
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">Launches</RouterLink>
-        <!-- <li @click="abo()">About</li> -->
+        <!-- <li @click="abo">About</li> -->
       </nav>
     </div>
   </header>
-  <div id="dynamic">
-    <component v-bind:is="currentPage" ></component>
-  </div>  
   <RouterView />
+  <div id="dynamic">
+    <component v-bind:is="currentPage" @selected="abo" :apiEnd="apiText"></component>
+  </div>  
 </template>
 
 <style scoped>

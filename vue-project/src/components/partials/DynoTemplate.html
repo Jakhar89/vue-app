@@ -1,0 +1,25 @@
+<div class="caps_wrapper">
+    <template v-if="infoProp">
+    <div v-for="(info,i) in infoProp"  :set="temp=getData(info)" class="caps_wrapper--element" :class="temp.color?'caps_wrapper--element__red':'caps_wrapper--element__green'">
+        <template v-if="temp">
+                <img v-if="temp.img" :src="info[temp.img]" class="caps_wrapper--img"/>
+            
+                <img v-else :src="`https://picsum.photos/200/300?random=${i}`" class="caps_wrapper--img" />
+            
+        <div class="caps_wrapper--details">
+            <h2>{{info[temp.mission_name]}}</h2>
+            <div id="menu">
+                <div id="list">
+                    <p v-if="info[temp.details]">{{info[temp.details]}}</p>
+                    <p v-else="">No specific details!</p>
+                    <h3><a :href="info[temp.read_more]">read more... </a></h3>
+                </div>
+            </div>
+            <h3 v-if="temp.h31">{{temp.h31}} : <span> {{info[temp.h31Data]}}</span></h3>
+            <h3 v-if="temp.h32">{{temp.h32}} : <span>{{info[temp.h32Data]}}</span></h3>
+            <h3 v-if="temp.h33">{{temp.h33}}  : <span>{{info[temp.h33Data]}}</span></h3>
+        </div>
+        </template>
+    </div>
+    </template> 
+</div>

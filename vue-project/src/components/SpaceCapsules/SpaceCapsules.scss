@@ -10,6 +10,7 @@
     &--details {
         padding: 0 0 0 2px;
         width:50%;
+        overflow-wrap: break-word;
     }
     &--element{
         margin: 2%;
@@ -23,26 +24,28 @@
         &__red{
             border: 1px solid red; 
         }
-        #list {
+        #menu #list {
             max-height: 0;
             transition: max-height 0.5s ease-out;
             overflow: hidden;
         }
         
-        &:hover #list {
+        h2:hover + #menu #list,#menu:hover #list{
             max-height: 500px;
             transition: max-height 0.5s ease-in;
+            transition-delay: 0.5s;
+            cursor: pointer;
         }
-        #menu ~ h3{
-            max-height:100px;
+        h3{
+            max-height:200px;
             opacity:1;
-            transition: max-height 1s ease,opacity 0.25s ease-out;
-            transition-delay: 0.25s;
+            transition: max-height 0.5s ease,opacity 0.5s ease-out;
+            transition-delay: 0.5s;
         }
-        &:hover #menu ~ h3{
+        h2:hover ~ h3,#menu:hover ~ h3{
             max-height:0;
             opacity:0;
-            transition: max-height 0.25s ease,opacity 0.25s ease-in;
+            transition: max-height 0.5s ease,opacity 0.5s ease-in;
         }
     }
     h2{

@@ -1,5 +1,5 @@
 <template src="./SpaceCapsules.html"></template>
-<style scoped src="./SpaceCapsules.scss"></style>
+<style src="./SpaceCapsules.scss"></style>
 
 <script>
 export default {
@@ -10,7 +10,7 @@ export default {
     },
     data: function() {
         return{
-            capsules: [],
+            infoProp: [],
             offSet:0,
             url:null      
         }
@@ -31,7 +31,7 @@ export default {
                     })
                     .then(res => {
                         if (res.length > 0) {
-                            this.capsules = [...this.capsules, ...res];
+                            this.infoProp = [...this.infoProp, ...res];
                             this.offSet = this.offSet + lmt
                         }
                     }).catch((err) => {

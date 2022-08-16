@@ -1,7 +1,7 @@
 <script>
 import eventBus from './eventBus';
 import { RouterLink, RouterView } from 'vue-router';
-import { shallowRef,ref} from "vue";
+import { nextTick,shallowRef,ref} from "vue";
 import HelloWorld from './components/HelloWorld.vue';
 import About from './views/AboutView.vue';
 import Dyno from '@/components/partials/DynoTemplate.vue';
@@ -16,9 +16,15 @@ export default{
   },
   methods:{
     abo:function(txt){
-      this.apiText=txt
-      this.currentPage=shallowRef(Dyno);
-      document.getElementById('dynamic').style.display='block';
+      if(this.apiText !== txt){
+        this.apiText=txt
+       // this.currentPage=null;
+        // Wait for the change to get flushed to the DOM
+	      // await nextTick();
+        this.currentPage=shallowRef(Dyno);
+        document.getElementById('dynamic').style.display='block';
+        
+      }
     }
   },
   mounted:function(){
@@ -52,7 +58,7 @@ export default{
   </header>
   <RouterView />
   <div id="dynamic">
-    <component v-bind:is="currentPage" @selected="abo" :apiEnd="apiText"></component>
+    <component v-bind:is="currentPage" :key="apiText" @selected="abo" :apiEnd="apiText"></component>
   </div>  
 </template>
 

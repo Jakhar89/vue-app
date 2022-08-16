@@ -4,7 +4,7 @@
 import { defineComponent } from 'vue';
 interface DynoTemp{
     color:Boolean,
-    img:Boolean,
+    img:String,
     mission_name:String,
     details:String,
     read_more:String,
@@ -71,7 +71,7 @@ export default defineComponent({
                 case "Missions":
                     ret={
                         color:false,
-                        img:false,
+                        img:'',
                         mission_name:"mission_name",
                         details:"description",
                         read_more:"website",
@@ -86,7 +86,7 @@ export default defineComponent({
                 case "Capsules":
                     ret={
                         color:info.status==='retired'?true:false,
-                        img:false,
+                        img:'',
                         mission_name:'capsule_id',
                         details:"details",
                         read_more:"",
@@ -96,6 +96,36 @@ export default defineComponent({
                         h32Data:"type",
                         h33:"Landings",
                         h33Data:"landings"
+                        }
+                    return ret;
+                case "Ships":
+                    ret={
+                        color:info.active===false?true:false,
+                        img:'image',
+                        mission_name:'ship_name',
+                        details:"home_port",
+                        read_more:"url",
+                        h31:"Year",
+                        h31Data:"year_built",
+                        h32:"Status",
+                        h32Data:"status",
+                        h33:"Missions",
+                        h33Data:info.missions.length>0?info.missions.length:"No data"
+                        }
+                    return ret;
+                case "Rockets":
+                    ret={
+                        color:info.active===false?true:false,
+                        img:'',
+                        mission_name:'rocket_name',
+                        details:"description",
+                        read_more:"wikipedia",
+                        h31:"Country",
+                        h31Data:"country",
+                        h32:"Engine",
+                        h32Data:info.engines.type,
+                        h33:"First Flight",
+                        h33Data:"first_flight"
                         }
                     return ret;
                 default:

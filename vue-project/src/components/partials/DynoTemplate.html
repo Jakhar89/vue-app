@@ -15,9 +15,9 @@
                     <h3><a :href="info[temp.read_more]">read more... </a></h3>
                 </div>
             </div>
-            <h3 v-if="temp.h31">{{temp.h31}} : <span> {{info[temp.h31Data]}}</span></h3>
-            <h3 v-if="temp.h32">{{temp.h32}} : <span>{{info[temp.h32Data]}}</span></h3>
-            <h3 v-if="temp.h33">{{temp.h33}}  : <span>{{info[temp.h33Data]}}</span></h3>
+            <h3 v-if="temp.h31">{{temp.h31}} : <span> {{info[temp.h31Data]?info[temp.h31Data]:temp.h31Data}}</span></h3>
+            <h3 v-if="temp.h32">{{temp.h32}} : <span>{{info[temp.h32Data]?info[temp.h32Data]:temp.h32Data}}</span></h3>
+            <h3 v-if="temp.h33">{{temp.h33}}  : <span>{{info[temp.h33Data]?info[temp.h33Data]:temp.h33Data}}</span></h3>
         </div>
         </template>
     </div>
